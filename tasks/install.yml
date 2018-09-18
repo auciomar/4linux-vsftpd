@@ -1,0 +1,22 @@
+---
+- name: Instala pacote vsftpd no Debian
+  when: ansible_os_family == "Debian"
+  register: vsftpd_installed
+  apt:
+          name: vsftpd
+          state: present
+          update_cache: true
+
+- name: Instala pacote vsftpd no CentOS
+  when: ansible_os_family == "RedHat"
+  register: vsftpd_installed
+  yum:
+          name: vsftpd
+          state: present
+
+- name: Inicia e ativa inicializacao automatica do servico de FTP
+  when: ansible_os_family == "RedHat"
+  systemd:
+          name: vsftpd
+          state: started
+          enable: true

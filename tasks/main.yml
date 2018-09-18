@@ -1,0 +1,11 @@
+---
+# tasks file for vsftpd
+- name: Instala pacote vsftps
+  import_tasks: install.yml
+
+- name: Define arquivo de configuracao
+  import_tasks: configure.yml
+
+- name: Verifica status do servico vsftpd e arquivo de configuracao
+  import_tasks: verify.yml
+

@@ -1,0 +1,12 @@
+---
+- name: Define arquivo de configuracao do vsftpd
+  when:
+          - vsftpd_installed is success
+          - ansible_os_family == "Debian"
+  template:
+          src: vsftpd.conf.j2
+          dest: /etc/vsftpd.conf
+          owner: root
+          group: root
+          mode: 0644
+  notify: Start VsFTPD

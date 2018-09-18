@@ -1,0 +1,10 @@
+---
+- name: Verifica status do servico vsftpd
+  shell: systemctl status vsftpd
+  register: output
+- debug: msg={{ output.stdout_lines }}
+
+- name: verifica arquivo de configuracao
+  shell: "cat /etc/vsftpd.conf | grep banner"
+  register: output
+- debug: msg={{ output.stdout_lines }}
